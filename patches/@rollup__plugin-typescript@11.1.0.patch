@@ -1,0 +1,30 @@
+diff --git a/dist/cjs/index.js b/dist/cjs/index.js
+index 8c1afe67d008f0e53abaa6e7eb42a327a3b71796..e9200c285f99ec518c70635062499fd5a3251fd8 100644
+--- a/dist/cjs/index.js
++++ b/dist/cjs/index.js
+@@ -305,8 +305,8 @@ function setModuleResolutionKind(parsedConfig) {
+     return {
+         ...parsedConfig,
+         options: {
+-            ...parsedConfig.options,
+-            moduleResolution
++            moduleResolution,
++            ...parsedConfig.options
+         }
+     };
+ }
+diff --git a/dist/es/index.js b/dist/es/index.js
+index e174eabb53173b73d663396a5b93117799c29b27..6ffc193ca66f27eddbe4d13d71b03357522f0d74 100644
+--- a/dist/es/index.js
++++ b/dist/es/index.js
+@@ -283,8 +283,8 @@ function setModuleResolutionKind(parsedConfig) {
+     return {
+         ...parsedConfig,
+         options: {
+-            ...parsedConfig.options,
+-            moduleResolution
++            moduleResolution,
++            ...parsedConfig.options
+         }
+     };
+ }

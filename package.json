@@ -1,0 +1,57 @@
+{
+  "name": "rollup-config-iiimaddiniii",
+  "version": "0.1.0",
+  "description": "A Rollup config for my projects",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "type": "commonjs",
+  "scripts": {
+    "clean": "pnpx rimraf ./.rollup.cache/ ./dist/ ./node_modules/ ./tsconfig.tsbuildinfo",
+    "build": "pnpm install && pnpm exec rollup --config rollup.config.mjs",
+    "buildCi": "set prod=true && pnpm run clean && pnpm install --frozen-lockfile && rollup --config rollup.config.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IIIMADDINIII/node-package-template"
+  },
+  "author": "IIIMADDINIII <martin@elend.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IIIMADDINIII/node-package-template/issues"
+  },
+  "homepage": "https://github.com/IIIMADDINIII/node-package-template#readme",
+  "pnpm": {
+    "patchedDependencies": {
+      "@rollup/plugin-typescript@11.1.0": "patches/@rollup__plugin-typescript@11.1.0.patch"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typescript": "^5.0.3",
+    "rollup": "^3.20.2"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/pluginutils": "^5.0.2",
+    "rollup-plugin-consts": "^1.1.0",
+    "rollup-plugin-include-sourcemaps": "^0.7.0",
+    "tslib": "^2.5.0"
+  },
+  "rollup": {
+    "packageDependencies": true,
+    "externalPackages": [
+      "rollup",
+      "typescript"
+    ]
+  }
+}
