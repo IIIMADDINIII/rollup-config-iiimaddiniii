@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IIIMADDINIII/node-package-template"
+    "url": "git+https://github.com/IIIMADDINIII/rollup-config-iiimaddiniii"
   },
   "author": "IIIMADDINIII <martin@elend.name>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IIIMADDINIII/node-package-template/issues"
+    "url": "https://github.com/IIIMADDINIII/rollup-config-iiimaddiniii/issues"
   },
-  "homepage": "https://github.com/IIIMADDINIII/node-package-template#readme",
+  "homepage": "https://github.com/IIIMADDINIII/rollup-config-iiimaddiniii#readme",
   "pnpm": {
     "patchedDependencies": {
       "@rollup/plugin-typescript@11.1.0": "patches/@rollup__plugin-typescript@11.1.0.patch"
