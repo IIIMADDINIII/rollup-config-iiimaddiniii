@@ -42,8 +42,8 @@ devDependencies:
     specifier: ^3.20.2
     version: 3.21.0
   rollup-config-iiimaddiniii:
-    specifier: ^0.1.0
-    version: 0.1.1(@types/node@18.16.0)(rollup@3.21.0)(typescript@5.0.4)
+    specifier: ^0.1.2
+    version: 0.1.2(@types/node@18.16.0)(rollup@3.21.0)(typescript@5.0.4)
   typescript:
     specifier: ^5.0.3
     version: 5.0.4
@@ -320,8 +320,8 @@ packages:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
-  /rollup-config-iiimaddiniii@0.1.1(@types/node@18.16.0)(rollup@3.21.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-R9uUkicJw0rA+AXbgUCQWSJHZsoIm2tw4CXDLn6QtSvvYp1A5LcbY/uKCgaAjV8cZhbWfB/JJm3OS6efLFxszA==}
+  /rollup-config-iiimaddiniii@0.1.2(@types/node@18.16.0)(rollup@3.21.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-sskLy1PQYp+0eSe8Jgy079Idx2fsfPlfFRBlrsipRb6J2QB/B9D8h5A3kQj1rkqT4ZraU10hi/ickvHQzq7pjg==}
     dependencies:
       '@rollup/plugin-commonjs': 24.1.0(rollup@3.21.0)
       '@rollup/plugin-json': 6.0.0(rollup@3.21.0)

@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "typescript": "^5.0.3",
-    "rollup-config-iiimaddiniii": "^0.1.0",
+    "rollup-config-iiimaddiniii": "^0.1.2",
     "rollup": "^3.20.2"
   },
   "dependencies": {

@@ -14,6 +14,7 @@ function getTypescriptOptions(config: Config, discardDeclarations: boolean = fal
   let ret: RollupTypescriptOptions = { noEmitOnError: true, outputToFilesystem: true, declaration: generateDeclaration, declarationMap: generateDeclaration };
   if (config.production) {
     ret.sourceMap = false;
+    ret.inlineSources = undefined;
   }
   return ret;
 }
