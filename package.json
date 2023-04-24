@@ -1,6 +1,6 @@
 {
   "name": "rollup-config-iiimaddiniii",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "A Rollup config for my projects",
   "exports": {
     ".": {
@@ -8,14 +8,18 @@
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       }
+    },
+    "./switches": {
+      "require": "./dist/switches.js",
+      "types": "./dist/switches.d.ts"
     }
   },
   "type": "commonjs",
   "scripts": {
     "clean": "pnpx rimraf ./.rollup.cache/ ./dist/ ./node_modules/ ./tsconfig.tsbuildinfo",
-    "runRollup": "pnpm exec rollup --config node:iiimaddiniii",
-    "build": "pnpm install && pnpm run runRollup",
-    "buildCi": "set prod=true && pnpm run clean && pnpm install --frozen-lockfile && pnpm run runRollup"
+    "buildRollup": "pnpm exec rollup --config node:iiimaddiniii",
+    "build": "pnpm install && pnpm run buildRollup",
+    "buildCi": "set prod=true && pnpm run clean && pnpm install --frozen-lockfile && pnpm run buildRollup"
   },
   "repository": {
     "type": "git",
