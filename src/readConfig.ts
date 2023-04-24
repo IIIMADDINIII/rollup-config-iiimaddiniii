@@ -2,6 +2,7 @@
 import { normalizePath } from "@rollup/pluginutils";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import { fileExists } from "./utils.js";
 
 export interface Config {
   type: "commonjs" | "module" | "none";
@@ -10,6 +11,7 @@ export interface Config {
   inlineSourceMaps: boolean;
   production: boolean;
   generateDeclaration: boolean;
+  testsExist: boolean;
   sourcemap: boolean | "inline";
   path: string;
   externalPackages: string[];
@@ -26,6 +28,7 @@ export function getDefaultConfig(): Config {
     inlineSourceMaps: false,
     production: false,
     generateDeclaration: true,
+    testsExist: false,
     sourcemap: true,
     path: "",
     externalPackages: [],
@@ -44,14 +47,15 @@ export function readConfig(): Config {
 }
 
 function readEnvironment(packageConfig: Config) {
-  packageConfig.path = normalizePath(resolve("./package.json"));
+  packageConfig.path = normalizePath(resolve(process.cwd() + "/package.json"));
+  packageConfig.testsExist = fileExists("./src/test/index.ts");
   if (process.env["prod"]?.trim() === "true") {
     packageConfig.production = true;
   }
 }
 
 function readPackageJson(packageConfig: Config): void {
-  let packageJson = getPackageJson();
+  let packageJson = getPackageJson(packageConfig.path);
   if ((typeof packageJson !== "object") || (packageJson === null)) throw new Error("package.json does not contain an object");
   readPackageType(packageConfig, packageJson);
   readPackageExports(packageConfig, packageJson);
@@ -125,10 +129,10 @@ function readRollupExtPackages(packageConfig: Config, rollup: object): void {
   packageConfig.externalPackages = rollup.externalPackages;
 }
 
-function getPackageJson(): unknown {
+function getPackageJson(path: string): unknown {
   let data;
   try {
-    data = readFileSync("./package.json", { encoding: "utf-8" });
+    data = readFileSync(path, { encoding: "utf-8" });
   } catch (e) {
     throw new Error("package.json is not readable");
   }
