@@ -10,8 +10,8 @@
       }
     },
     "./switches": {
-      "require": "./dist/switches.js",
-      "types": "./dist/switches.d.ts"
+      "types": "./dist/switches.d.ts",
+      "require": "./dist/switches.js"
     }
   },
   "type": "commonjs",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "typescript": "^5.0.3",
-    "rollup-config-iiimaddiniii": "^0.1.2",
+    "rollup-config-iiimaddiniii": "^0.1.3",
     "rollup": "^3.20.2"
   },
   "dependencies": {

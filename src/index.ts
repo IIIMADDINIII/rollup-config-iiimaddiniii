@@ -27,15 +27,24 @@ function mapExports(name: string): RollupOptions {
   if (name.startsWith("./")) name = name.slice(2);
   if (name == ".") name = "index";
   let output: OutputOptions[] = [];
+  if (config.type === "none") output.push({
+    file: `./dist/cjs/${name}.js`,
+    format: "commonjs",
+    sourcemap: config.sourcemap,
+  }, {
+    file: `./dist/esm/${name}.js`,
+    format: "esm",
+    sourcemap: config.sourcemap,
+  });
   // export commonjs when module is not module
-  if (config.type !== "module") output.push({
-    file: `./dist/${name}.${config.type !== "commonjs" ? "c" : ""}js`,
+  if (config.type === "commonjs") output.push({
+    file: `./dist/${name}.js`,
     format: "commonjs",
     sourcemap: config.sourcemap,
   });
   // export esm when module is not commonjs
-  if (config.type !== "commonjs") output.push({
-    file: `./dist/${name}.${config.type !== "module" ? "m" : ""}js`,
+  if (config.type === "module") output.push({
+    file: `./dist/${name}.js`,
     format: "esm",
     sourcemap: config.sourcemap,
   });
