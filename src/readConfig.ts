@@ -120,7 +120,7 @@ function readRollupPackageDeps(packageConfig: Config, rollup: object): void {
 function readRollupSourceMaps(packageConfig: Config, rollup: object): void {
   if (!("inlineSourceMaps" in rollup)) return;
   if (typeof rollup.inlineSourceMaps !== "boolean") throw new Error("rollup.inlineSourceMaps in Package.json needs to be boolean");
-  packageConfig.sourcemap = rollup.inlineSourceMaps;
+  packageConfig.inlineSourceMaps = rollup.inlineSourceMaps;
 }
 
 function readRollupExtPackages(packageConfig: Config, rollup: object): void {
