@@ -48,7 +48,7 @@ export function manageDepsPlugin(config: Config): Plugin {
       if (importer === undefined) return null;
       if (/\0/.test(imported)) return null;
       if (await findPackage(normalizePath(importer)) !== config.path) return matchesPackage(imported, externalPackages);
-      if (matchesPackage(imported, config.devDependencies) !== null) {
+      if (!config.allowDevDependencies && (matchesPackage(imported, config.devDependencies) !== null)) {
         if (config.packageDependencies) {
           console.warn(`Dependency ${imported} is a devDependency and is imported which can lead to errors (${importer})`);
         } else {

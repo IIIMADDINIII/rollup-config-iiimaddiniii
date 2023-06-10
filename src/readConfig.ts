@@ -13,6 +13,7 @@ export interface Config {
   generateDeclaration: boolean;
   testsExist: boolean;
   resolveNode: boolean;
+  allowDevDependencies: boolean;
   sourcemap: boolean | "inline";
   path: string;
   externalPackages: string[];
@@ -31,6 +32,7 @@ export function getDefaultConfig(): Config {
     generateDeclaration: true,
     testsExist: false,
     resolveNode: false,
+    allowDevDependencies: false,
     sourcemap: true,
     path: "",
     externalPackages: [],
@@ -106,6 +108,7 @@ function readPackageRollup(packageConfig: Config, packageJson: object): void {
   readRollupSourceMaps(packageConfig, rollup);
   readRollupExtPackages(packageConfig, rollup);
   readRollupResolveNode(packageConfig, rollup);
+  readRollupAllowDevDeps(packageConfig, rollup);
 }
 
 function readRollupEmitDecl(packageConfig: Config, rollup: object): void {
@@ -136,6 +139,12 @@ function readRollupResolveNode(packageConfig: Config, rollup: object): void {
   if (!("resolveNode" in rollup)) return;
   if (typeof rollup.resolveNode !== "boolean") throw new Error("rollup.resolveNode in Package.json needs to be boolean");
   packageConfig.resolveNode = rollup.resolveNode;
+}
+
+function readRollupAllowDevDeps(packageConfig: Config, rollup: object): void {
+  if (!("allowDevDependencies" in rollup)) return;
+  if (typeof rollup.allowDevDependencies !== "boolean") throw new Error("rollup.allowDevDependencies in Package.json needs to be boolean");
+  packageConfig.allowDevDependencies = rollup.allowDevDependencies;
 }
 
 function getPackageJson(path: string): unknown {
