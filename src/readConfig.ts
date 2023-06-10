@@ -12,6 +12,7 @@ export interface Config {
   production: boolean;
   generateDeclaration: boolean;
   testsExist: boolean;
+  resolveNode: boolean;
   sourcemap: boolean | "inline";
   path: string;
   externalPackages: string[];
@@ -29,6 +30,7 @@ export function getDefaultConfig(): Config {
     production: false,
     generateDeclaration: true,
     testsExist: false,
+    resolveNode: false,
     sourcemap: true,
     path: "",
     externalPackages: [],
@@ -103,6 +105,7 @@ function readPackageRollup(packageConfig: Config, packageJson: object): void {
   readRollupPackageDeps(packageConfig, rollup);
   readRollupSourceMaps(packageConfig, rollup);
   readRollupExtPackages(packageConfig, rollup);
+  readRollupResolveNode(packageConfig, rollup);
 }
 
 function readRollupEmitDecl(packageConfig: Config, rollup: object): void {
@@ -127,6 +130,12 @@ function readRollupExtPackages(packageConfig: Config, rollup: object): void {
   if (!("externalPackages" in rollup)) return;
   if ((typeof rollup.externalPackages !== "object") || !isArray(rollup.externalPackages) || !rollup.externalPackages.every((v): v is string => typeof v === "string")) throw new Error("rollup.externalPackages in Package.json needs to be a string array");
   packageConfig.externalPackages = rollup.externalPackages;
+}
+
+function readRollupResolveNode(packageConfig: Config, rollup: object): void {
+  if (!("resolveNode" in rollup)) return;
+  if (typeof rollup.resolveNode !== "boolean") throw new Error("rollup.resolveNode in Package.json needs to be boolean");
+  packageConfig.resolveNode = rollup.resolveNode;
 }
 
 function getPackageJson(path: string): unknown {

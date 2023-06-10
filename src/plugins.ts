@@ -27,7 +27,7 @@ export function getPlugins(config: Config, discardDeclarations: boolean = false)
     commonjs(),
     typescript(getTypescriptOptions(config, discardDeclarations)),
     sourceMaps(),
-    nodeResolve(),
+    nodeResolve({ exportConditions: config.resolveNode ? ["node"] : [] }),
   ];
   if (config.production) {
     plugins.push(terser({ format: { comments: false } }));
